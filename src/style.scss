@@ -1,0 +1,16 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: #193451;
+  font-size: 16px;
+  font-weight: 600;
+  user-select: none;
+  margin: 0;
+
+  background: #193451;
+  background: linear-gradient(to right bottom, #193451 0%, #fab78b 100%) fixed;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+}
