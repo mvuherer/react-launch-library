@@ -34,7 +34,7 @@ const Launch = ({ data }) => {
   return (
     <>
       <Name>{data.name}</Name>
-      <Name>{data.agency.name}</Name>
+      <Name>{data.agency?.name}</Name>
       <Timer>{timer}</Timer>
     </>
   );
@@ -45,7 +45,11 @@ Launch.propTypes = {
     agency: PropTypes.shape({ name: PropTypes.string }),
     date: PropTypes.string,
     name: PropTypes.string,
-  }).isRequired,
+  }),
+};
+
+Launch.defaultProps = {
+  data: {},
 };
 
 export default memo(Launch);
