@@ -22,3 +22,4 @@ Make sure you have .env filled with proper values.
 - Agency filtering
 - Error 429 handler
 - Make it responsive
+- Implement more handy month/year navigation
