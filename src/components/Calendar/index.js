@@ -1,4 +1,5 @@
 import React, { memo, useMemo } from 'react';
+import { MoonLoader } from 'react-spinners';
 
 import { WEEK_DAYS, MONTHS } from 'src/constants';
 
@@ -28,8 +29,9 @@ const Calendar = () => {
 
   return (
     <Shell>
-      <Header isLoading={isLoading}>
+      <Header>
         {monthLabel}, {selectedYear}
+        {isLoading && <MoonLoader color="#fab78b" size="30" />}
       </Header>
       <CalendarShell>
         <Navigation onClick={handleBackNavigationClick}>{'<'}</Navigation>
