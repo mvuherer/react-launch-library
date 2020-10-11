@@ -53,8 +53,8 @@ const actionMap = {
       name: result.name,
       date: result.net,
       agency: {
-        id: result.launch_service_provider.id,
-        name: result.launch_service_provider.name,
+        id: result.launch_service_provider?.id,
+        name: result.launch_service_provider?.name,
       },
     })),
     isLoading: false,
