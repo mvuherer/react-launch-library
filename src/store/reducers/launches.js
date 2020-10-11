@@ -49,7 +49,6 @@ const actionMap = {
     ...state,
     data: results.map((result) => ({
       id: result.id,
-      imageUrl: result.image,
       name: result.name,
       date: result.net,
       agency: {
