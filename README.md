@@ -18,7 +18,6 @@ Make sure you have .env filled with proper values.
 
 ## TODO
 
-- Agency filtering
-- Error 429 handler
+- API error handler
 - Make it responsive
 - Implement more handy month/year navigation
