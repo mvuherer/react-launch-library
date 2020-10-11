@@ -15,3 +15,8 @@ Make sure you have .env filled with proper values.
 ## Hosted Access
 
 [https://react-launch.vuherer.com](https://react-launch.vuherer.com)
+
+## TODO
+
+- Agency filtering
+- Error 429 handler
