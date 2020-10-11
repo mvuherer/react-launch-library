@@ -1,4 +1,6 @@
-export default (ms) => {
+export default (ETA) => {
+  const ms = Math.abs(ETA);
+
   const days = Math.floor(ms / (24 * 60 * 60 * 1000));
   const daysMs = ms % (24 * 60 * 60 * 1000);
   const hours = Math.floor(daysMs / (60 * 60 * 1000));
@@ -7,7 +9,9 @@ export default (ms) => {
   const minutesMs = ms % (60 * 1000);
   const seconds = Math.floor(minutesMs / 1000);
 
-  return `${days}D ${hours.toString().padStart(2, '0')}H ${minutes
+  return `T ${ETA >= 0 ? '+' : '-'} ${days}D ${hours
     .toString()
-    .padStart(2, '0')}M ${seconds.toString().padStart(2, '0')}S`;
+    .padStart(2, '0')}H ${minutes.toString().padStart(2, '0')}M ${seconds
+    .toString()
+    .padStart(2, '0')}S`;
 };

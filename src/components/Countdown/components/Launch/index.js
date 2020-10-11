@@ -13,7 +13,7 @@ const Launch = ({ data }) => {
   const handleCountDown = useCallback(() => {
     const ETA = new Date() - new Date(data.date);
 
-    setTimer(`T${ETA >= 0 ? '+' : '-'}${getTimerString(Math.abs(ETA))}`);
+    setTimer(getTimerString(ETA));
   }, [data.date]);
 
   useEffect(() => {
