@@ -3,16 +3,45 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { DAYS_ON_CALENDAR, DECEMBER, JANUARY, MONDAY } from 'src/constants';
 import { getMonthDays, getWeekDay, getArrayOfN } from 'src/utils';
-import { launches } from 'src/store/actions';
+import { agencies, launches } from 'src/store/actions';
 
 export default () => {
   const dispatch = useDispatch();
 
-  const events = useSelector((state) => state.launches.data);
+  const agencyOptions = useSelector((state) => [
+    { value: null, label: 'All' },
+    ...state.agencies.data.map(({ id, name }) => ({ value: id, label: name })),
+  ]);
+  const events = useSelector((state) =>
+    state.launches.data.filter((launch) =>
+      [launch.agency?.id, null].includes(state.agencies.selectedId),
+    ),
+  );
   const isLoading = useSelector((state) => state.launches.isLoading);
 
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
+
+  const getAgencies = useCallback(
+    (page = 0) => {
+      dispatch(agencies.getAgencies(page)).then(
+        ({
+          result: {
+            data: { next },
+          },
+        }) => {
+          if (next) {
+            getAgencies(page + 1);
+          }
+        },
+      );
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    getAgencies(0);
+  }, [getAgencies]);
 
   useEffect(() => {
     dispatch(
@@ -44,6 +73,13 @@ export default () => {
         DAYS_ON_CALENDAR - (previousMonthIndices.length + currentMonthIndices.length),
       ),
     [currentMonthIndices.length, month, previousMonthIndices.length, year],
+  );
+
+  const handleAgencySelect = useCallback(
+    ({ value }) => {
+      dispatch(agencies.setSelected(value));
+    },
+    [dispatch],
   );
 
   const handleDayClick = useCallback(
@@ -88,8 +124,10 @@ export default () => {
   }, [month, year]);
 
   return {
+    agencyOptions,
     currentMonthIndices,
     events,
+    handleAgencySelect,
     handleBackNavigationClick,
     handleDayClick,
     handleForwardNavigationClick,

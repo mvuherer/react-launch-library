@@ -3,13 +3,24 @@ import { MoonLoader } from 'react-spinners';
 
 import { WEEK_DAYS, MONTHS } from 'src/constants';
 
-import { CalendarShell, DaysShell, Days, Header, Navigation, Shell, WeekDay } from './components';
+import {
+  Agencies,
+  CalendarShell,
+  Days,
+  DaysShell,
+  Header,
+  Navigation,
+  Shell,
+  WeekDay,
+} from './components';
 import { useCalendar } from './hooks';
 
 const Calendar = () => {
   const {
+    agencyOptions,
     currentMonthIndices,
     events,
+    handleAgencySelect,
     handleBackNavigationClick,
     handleDayClick,
     handleForwardNavigationClick,
@@ -33,6 +44,11 @@ const Calendar = () => {
         {monthLabel}, {selectedYear}
         {isLoading && <MoonLoader color="#fab78b" size="30px" />}
       </Header>
+      <Agencies
+        options={agencyOptions}
+        placeholder="Filter by agencies..."
+        onChange={handleAgencySelect}
+      />
       <CalendarShell>
         <Navigation onClick={handleBackNavigationClick}>{'<'}</Navigation>
         <DaysShell>

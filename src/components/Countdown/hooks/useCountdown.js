@@ -6,14 +6,18 @@ import { WEEK_DAYS, MONTHS } from 'src/constants';
 
 export default () => {
   const view = useSelector((state) => state.launches.view);
+  const selectedAgencyId = useSelector((state) => state.agencies.selectedId);
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const launches = useMemo(() => view.data, [view]);
+  const launches = useMemo(
+    () => view.data.filter((launch) => [launch.agency?.id, null].includes(selectedAgencyId)),
+    [view, selectedAgencyId],
+  );
 
   useEffect(() => {
     setSelectedIndex(0);
-  }, [view]);
+  }, [launches]);
 
   const headerText = useMemo(() => {
     const { day, month, year } = view;

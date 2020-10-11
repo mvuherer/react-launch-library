@@ -13,7 +13,6 @@ const actionMap = {
 
   [actions.AGENCIES_GET_REQUEST]: (state) => ({
     ...state,
-    data: [],
     isLoading: true,
   }),
 
@@ -26,10 +25,13 @@ const actionMap = {
     },
   ) => ({
     ...state,
-    data: results.map((result) => ({
-      id: result.id,
-      name: result.name,
-    })),
+    data: [
+      ...state.data,
+      ...results.map((result) => ({
+        id: result.id,
+        name: result.name,
+      })),
+    ],
     isLoading: false,
   }),
 

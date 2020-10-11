@@ -6,7 +6,7 @@ export default {
     agencyId,
   }),
 
-  getAgencies: () => ({
+  getAgencies: (page = 0) => ({
     [actions.API_CALL]: {
       types: [
         actions.AGENCIES_GET_REQUEST,
@@ -17,6 +17,8 @@ export default {
         client.get(paths.api.AGENCIES, {
           params: {
             ordering: 'name',
+            limit: 100,
+            offset: 100 * page,
           },
         }),
     },
