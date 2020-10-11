@@ -18,5 +18,6 @@ Make sure you have .env filled with proper values.
 
 ## TODO
 
+- View all launches for date
 - Agency filtering
 - Error 429 handler
