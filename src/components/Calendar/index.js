@@ -31,7 +31,7 @@ const Calendar = () => {
     <Shell>
       <Header>
         {monthLabel}, {selectedYear}
-        {isLoading && <MoonLoader color="#fab78b" size="30" />}
+        {isLoading && <MoonLoader color="#fab78b" size="30px" />}
       </Header>
       <CalendarShell>
         <Navigation onClick={handleBackNavigationClick}>{'<'}</Navigation>
