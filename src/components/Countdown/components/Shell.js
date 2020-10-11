@@ -11,6 +11,8 @@ const Shell = styled.div`
   padding: 37.5px;
   width: 400px;
   color: #fff;
+  display: flex;
+  flex-direction: column;
 `;
 
 export default Shell;

@@ -1,15 +1,29 @@
 import React, { memo } from 'react';
 
-import { Header, Launch, Shell, Subheader } from './components';
+import { Header, Launch, Navigation, NavigationShell, Shell, Subheader } from './components';
 import { useCountdown } from './hooks';
 
 const Countdown = () => {
-  const { launches, headerText, subheaderText } = useCountdown();
+  const {
+    handleBackNavigationClick,
+    handleForwardNavigationClick,
+    headerText,
+    launches,
+    selectedIndex,
+    subheaderText,
+  } = useCountdown();
+
   return (
     <Shell>
       <Header>{headerText}</Header>
       <Subheader>{subheaderText}</Subheader>
-      {launches[0] && <Launch data={launches[0]} />}
+      {launches.length ? <Launch data={launches[selectedIndex]} /> : null}
+      {launches.length > 1 && (
+        <NavigationShell>
+          <Navigation onClick={handleBackNavigationClick}>{'<'}</Navigation>
+          <Navigation onClick={handleForwardNavigationClick}>{'>'}</Navigation>
+        </NavigationShell>
+      )}
     </Shell>
   );
 };
